@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #F7F4EE;
+  color: #2A2622;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: -0.02em;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Signature: warm photographic grain overlay used on portrait/hero media */
+.grain {
+  position: relative;
+  overflow: hidden;
+}
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjAnIGhlaWdodD0nMTYwJz48ZmlsdGVyIGlkPSduJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC44JyBudW1PY3RhdmVzPScyJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9JzEwMCUnIGhlaWdodD0nMTAwJScgZmlsdGVyPSd1cmwoI24pJyBvcGFjaXR5PScwLjQnLz48L3N2Zz4=");
+  background-size: 160px 160px;
+}
+
+/* duotone treatment for the portrait, tying the photo into the warm palette */
+.duotone {
+  filter: grayscale(1) contrast(1.05) brightness(1.02);
+}
+.duotone-wash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(58,51,44,0.12) 0%, rgba(199,156,124,0.22) 100%);
+  mix-blend-mode: multiply;
+}
+
+.reveal {
+  opacity: 0;
+}
+.reveal.in-view {
+  animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    animation: none !important;
+  }
+  .animate-breathe {
+    animation: none !important;
+  }
+}
+
+::selection {
+  background: #C29C7C;
+  color: #F7F4EE;
+}
+
+:focus-visible {
+  outline: 2px solid #3A332C;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
